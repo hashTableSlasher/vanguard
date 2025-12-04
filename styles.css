@@ -1,8 +1,6 @@
-/* CSS BY YOUR NAME */
-
+/* CSS BY YOUR Lilly Mena */
 /* IMPORTED FONTS*/
-@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
-/* IMPORT "INTER" FROM GOOGLE FONTS"
+/* IMPORT "INTER" FROM GOOGLE FONTS" */
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 /* CSS RESET */
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -63,28 +61,12 @@ table {
     --font: "Inter", sans-serif;
     --glow: 0px 9px 15px var(--blue);
 }
-/* Possible Ideas for animation/trans
-1. Maybe logo can swipe right to reveal menu 
-2. Button hover should definitely do something, maybe glow or have circle glow, probably grow a bit?
-3. Maybe blue divs could change their background to image/ grow larger when hovered? 
-4. Maybe selected columns for form can have logo that jumps to selected box ?
-5. I should definitely do something cool with the menu, idk what
-6. It may be fun to add some animation to profits table, it looks like the rows change color automatically, 
-    perhaps I could switch them up for a second
-7. The hero image is of buildings and theres a blur over the words,
-    Maybe I could do something clever with the windows and blur
-8. Or I could make the blur be everything at first and then shrink to normal? 
-9. It might be fun to do something with the glow under the header if it's even possible
-10. Maybe I could try to make the blue divs look like buildings or the logo with a clipping mask? 
-    I kinda doubt you can clip a container background though
-11. Maybe idk if you can transition or animate based on view width but it might be fun if 
-    someone where to split windows on their screen?
-*/
+
 
 /* GLOBAL STYLES (MOBILE FIRST (SMALL) */
 
-
 /* MIN-WIDTH OF THE PAGE SHOULD NOT GO BELOW 400PX */
+body{min-width: 415px;}
 
 /* ADD A DIV WITH THE CLASS OF CONTAINER TO EVERY CONTENT CONTAINER THIS IS TO ALLOW THE BASE ELEMENTS TO BE 100% WIDTH, BUT CONSTRAIN THE ACTUAL CONTENT TO 90% */
 .container {
@@ -96,6 +78,33 @@ table {
 }
 
 
+
+
+/* THESE NEXT 2 SETS OF RULES SERVE TO CREATE SHADOW BOX AROUND HEADER AND ENSURE IT'S VISIBILITY */
+header{
+    background-color: var(--black);
+    color:var(--blue);
+    width:100%;
+    min-width: 400px;
+    box-sizing:border-box;
+    position:relative;
+    z-index:2;
+    box-shadow: var(--glow);
+} 
+
+
+main{
+    z-index:1;
+    position:relative;
+}
+
+main > section{
+    padding-top: 1rem;
+}
+
+
+
+/* MAKES HEADER INTO GRID */
 header > div{
     display: grid;
     grid-template-columns: 50% 50%;
@@ -103,15 +112,58 @@ header > div{
     align-items: center;
     align-content: end;
 }
-#first-column >*{
 
+
+
+/* NEXT SERIES OF THINGS SERVES TO STYLE EVERYTHING IN THE LEFT COLUMN OF THE HEADER */
+#first-column:before, #first-column{
+    padding-top:15px;
 }
 
+/* ADD FLOATING SVG LOGO BEFORE THE H1 */
+#first-column:before{
+    content: '';
+    left:-.5rem;
+    width: 3.75rem;
+    height: 3.75rem;
+    background: url('images/vanguard-logo.svg') no-repeat center/contain;
+    background-size: 45px;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    animation: logo 1s linear 100ms infinite alternate;
+}
+
+/* MAKES SVG LOOK LIKE IT'S HOVERING */
+@keyframes logo{
+    0%     {transform:translate(0px, 0px);}
+    100%   {transform:translate(0px, 6px);} 
+}
+
+/* CHANGES H1 TO SIT WITH SVG LOGO */
+h1{
+    position:relative;
+    top:-3.75rem;
+    left:3.75rem;
+    align-self: center;
+} 
+
+
+
+
+
+/* NEXT SERIES OF THINGS SERVES TO STYLE EVERYTHING IN THE RIGHT COLUMN OF THE HEADER */
+
+/* PUSHES MENU TO THE RIGHT OF SCREEN */
 #second-column {
-    justify-content:space-between;
-    justify-self: end;
-    text-align: right;
+    display:grid;
+    justify-content:end;
+    text-align: right; 
 }
+
+
+
+
+/*START OF HAMBURGER MENU*/
 nav ul{
     width:100%;
     margin:0;
@@ -129,26 +181,27 @@ nav h2{
 
 nav li a {
   display:block;
-  font-family:sans-serif;
   font-size:1.5rem;
   padding:1rem;
-  text-transform:uppercase;
-  font-weight:bold;
-  text-decoration:none;
+  text-transform: uppercase; 
+  font-weight: bold;
+  text-decoration: none;
   color: var(--blue);
   transition: background-color .3s ease-in;
 }
- a:hover {
+nav a{
+    transition: all .9s ease-in-out;
+}
+nav a:hover {
     background-color: var(--blue);
     color: var(--black);
 }
 nav label {
-    cursor: pointer;
     display: inline-block;
     padding: 1.5rem;
     user-select: none;
 }
-/* BUILDS THE MIDDLE LILNE OF THE HAMBURGER */
+/* BUILDS THE MIDDLE LINE OF THE HAMBURGER */
 label span {
     background-color: var(--white);
     display: block;
@@ -164,7 +217,7 @@ label span:before, label span:after {
     display: block;
     height: 100%;
     position: absolute;
-    transition: all .2s ease-out;
+    transition: all 0.3s ease-in-out;
     width: 100%;
 }
 label span:before {
@@ -181,28 +234,159 @@ input:checked ~ ul {
     max-height: 500px;
 }
 
+/*END OF HAMBURGER MENU*/
 
 
-main section{padding-top: 2rem;}
 
-h1,h2{
+
+
+
+
+
+/* HEADING STYLES AND FONTS*/
+
+
+h1,h2, #proven-results h3{
     font-size: 20pt;
     font-weight: bold;
 }
 main h2,h3{
-    padding:9px;
+    padding:10px ;
     
 }
 h3{
     font-weight:bold;
-    font-size:15pt;
+    font-size:16pt;
 }
-label{
-    display:block;
+
+
+
+
+
+
+
+
+
+
+
+
+/* STYLES ALL CONTENT ON/OF HERO IMAGE PORTION OF SITE  as well as settling headings animation*/
+
+/* ADD TO "INNOVATION & INVESTMENT SECTION (Photo by Kevin Matos on Unsplash) */
+#innovate{
+    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("images/vanguard-hero.jpg") no-repeat center center/cover;
+    height: 80vh;
+    display:grid;
+    padding:1rem;
+    place-items: center;
+    text-align: center;
+    overflow: hidden;
+    color: var(--white);
 }
-table, table *{
-    border:var(--charcoal) 1px solid;
+#innovate div{
+    backdrop-filter: blur(10px);
+}
+#innovate p{
+    padding-bottom: 1rem;
+}
+
+h2, h3{
+        animation: settle 1s ease-in-out 0s 1 normal;
+}
+
+@keyframes settle{
+    from      {opacity:0%; transform:translate(0px, -15px);}
+    to        {opacity:100%; transform:translate(0px, 0px);} 
+    }
+    
+button{
+    border:none;
+    font-weight: bold;
+    font-size: 13pt;
+    animation: settle 1.4s ease-in-out 0s 1 normal; 
+    transition: all 0.3s ease-in-out;
    
+}
+
+/* THIS ONE ACTUALLY SERVES TO ANIMATE FOR BOTH BUTTON IN HERO SECTION AND SUBMIT BUTTON */
+button:hover , input[type="submit"]:hover{
+    background-color: var(--red);
+    transform: scale(1.05,1.1);
+}
+
+
+
+
+/* THIS AREA PRIMARILY STYLES THE SECTION WITH A WHITE BACKGROUND AND BLUE BOXES BUT I ALSO USED COMMA IN SELECTORS TO KILL TWO BIRDS WITH ONE STONE FOR PROVEN RESULTS SECTION AND BUTTONS */
+
+#blues{
+    display:grid;
+    grid-template-columns: 1fr;
+    justify-content:space-evenly;
+    justify-items: center;
+    align-items: center;
+    gap: 15px;
+    padding: 1rem 0px 3rem;
+}
+#proven-results , .bluebox, button {
+    background-color: var(--blue);
+    color:var(--white);
+    padding: 1rem; 
+
+}
+.bluebox, button{
+    box-sizing: border-box;
+    border-radius: 9px;
+    height:100%;
+    justify-self:center;
+    align-items: end;
+}
+.bluebox{
+     width:100%;
+     transition: all 300ms ease-in-out;
+}
+
+.bluebox:hover{
+    transform: translate(0px, -10px);
+}
+
+
+
+
+
+
+/* RESULTS SECTION */
+
+
+/* GENERAL FOR RESULTS SECTION */
+#results {
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:15px;
+    justify-content: stretch;
+}
+
+#results > div{
+    box-sizing: border-box;
+    align-self: center;
+    justify-self: start;
+    width: 100%; 
+}
+#results > div table{
+    width: 100%; 
+}
+#results h3{
+    padding-bottom: 30px;
+}
+
+
+
+/* TABLE STYLING FOR RESULTS SECTION*/
+table, table *{
+    border:var(--charcoal) 1px solid;   
+}
+th {
+    font-weight: bold;
 }
 td,th{
     text-align: center;
@@ -215,129 +399,8 @@ tr:nth-child(even), th{
     background-color: var(--black) ;
 }
 
-/* ADD TO "INNOVATION & INVESTMENT SECTION (Photo by Kevin Matos on Unsplash) */
-#innovate{
-    background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url("images/vanguard-hero.jpg") no-repeat center center/cover;
-    height: 80vh;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    overflow: hidden;
-    color: var(--white);
-}
-#innovate div{
-    backdrop-filter: blur(10px);
-}
-#innovate p{
-    padding-bottom:1rem;
-}
-#innovate div h2, #innovate div button{
-        animation: settle 1s linear 400ms 1 normal;
-}
-@keyframes settle{
-    from    {transform:translate(0px, -10px);}
-    to   {transform:translate(0px, 0px);} 
-    }
-    
 
-
-
-
-
-
-header{
-    background-color: var(--black);
-    color:var(--blue);
-    width:100%;
-    min-width: 400px;
-    box-sizing:border-box;
-    position:relative;
-    z-index:2;
-    box-shadow: var(--glow);
-   
-
-} 
-main{
-    z-index:1;
-    position:relative;
-}
-
-
-h1{
-    position:relative;
-    top:-3rem;
-    left:3.75rem;
-    align-self: center;
-} 
-nav ul li{
-    justify-self: end;
-}
-/* ADD FLOATING SVG LOGO BEFORE THE H1 */
-#first-column:before{
-    content: '';
-    left:-.5rem;
-    width: 3.75rem;
-    height: 3.75rem;
-    background: url('images/vanguard-logo.svg') no-repeat center/contain;
-    background-size: 45px;
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr; 
-    animation: logo 1s linear 100ms infinite alternate;
-}
-@keyframes logo{
-    0% {transform:translate(0px, 0px);}
-    100%   {transform:translate(0px, 6px);} 
-}
-
-#blues{
-    display:grid;
-    grid-template-columns: 1fr;
-    justify-content:center;
-    justify-items: center;
-    align-items: center;
-    gap: 15px;
-    padding:3px 0px;
-    padding: 1rem 0px 3rem;
-}
-#proven-results , .bluebox, button {
-    background-color: var(--blue);
-    color:var(--white);
-    padding: 1rem; 
-
-}
-.bluebox, button{
-    box-sizing: border-box;
-    border-radius: 9px;
-    width:100%;
-    height:100%;
-    justify-self:center;
-}
-button{
-    border:none;
-    font-weight: bold;
-    font-size: 13pt;
-}
-button::hover{
-    background-color: var(--red);
-}
-
-#results {
-    display:grid;
-    grid-template-columns: 1fr;
-    justify-content: stretch;
-}
-
-#results > div{
-    box-sizing: border-box;
-    align-self: center;
-    justify-self: start;
-    justify-content: stretch;
-     width:100%; 
-}
-#results > div table{
-    width:100%; 
-}
-
+/* BAR CHART STYLING FOR RESULTS SECTION*/
 /* THIS ONE IS DONE FOR YOU */
 #bar-chart {
     display: grid;
@@ -357,7 +420,7 @@ button::hover{
     background: var(--charcoal);
     border-radius: 10px;
     position: relative;
-    /* transition: ; */
+    transition: all 2s ease-in-out; 
     height: 0;
 }
 /* THIS ONE IS DONE FOR YOU */
@@ -371,52 +434,8 @@ button::hover{
     font-weight: bold;
     color: var(--white);
 }
-.contact{
-    background-color: var(--black);
-    color:var(--white);
-}
-
-.contact label{
-    padding-top: 10px;
-    font-size: 16px;
-}
-input[type="text"],textarea{
-    width:100%;
-    border-radius:0%;
-    border: var(--blue) 3px solid;
-}
-input[type="text"]{
-    height:3em;
-}
-textarea{
-    height:5em;
-}
-input[type="submit"]{
-    background-color:var(--blue);
-    color:var(--white);
-    border:none;
-    margin: 2em 0px 2em;
-    border-radius: 9px;
-    height:3em;
-    font-weight: bold;
-    font-family: var(--font);
-    font-size: 16px;
-    width:100%;
-
-}
-
-footer{
-    background-color: var(--black);
-    color:var(--white);
-    text-align: center;
-    padding: 1.5em;
-}
-footer a{
-    color:var(--blue);
-    text-decoration: underline;
-}
-
-
+ 
+/* BAR CHART ANIMATION */
 @keyframes stepUp {
     0% {
         height: 0;
@@ -433,10 +452,98 @@ footer a{
 
 
 
+
+/* CONTACT AND FORM STYLING */
+form{
+    display:grid;
+    gap:20px;
+    padding-top: 20px;
+}
+
+.contact{
+    background-color: var(--black);
+    color:var(--white);
+}
+
+.contact label{
+    font-size: 16px;
+    display:block;
+}
+input[type="text"],textarea{
+    width: 99%;
+    border-radius: 0%;
+    border: var(--blue) 3px solid;
+}
+input[type="text"]{
+    height:3em;
+}
+textarea{
+    height:5em;
+}
+input[type="submit"]{
+    background-color:var(--blue);
+    color:var(--white);
+    border:none;
+    margin: 1.3em 0px 2em;
+    border-radius: 9px;
+    height:3em;
+    font-weight: bold;
+    font-family: var(--font);
+    font-size: 16px;
+    width: 100%;
+    max-width: 100%;
+    transition: all 0.5s ease;
+}
+
+
+
+
+
+
+
+/* FOOTER STYLES */
+footer{
+    background-color: var(--black);
+    color:var(--white);
+    text-align: center;
+    padding: 1.5em;
+}
+footer a{
+    color:var(--blue);
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
 /* MEDIA QUERIES (MEDIUM) */ 
 @media screen and (min-width:800px){
+   
+    nav ul{
+        display:grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        overflow: visible;
+    }
+    
+    nav label{
+        position:relative;
+        top:-40px;
+        display: none; 
+    }
+    
+    ul{
+        position:relative;
+        top:-40px;
+        align-items: start;
+    }
+    
     #results {
         grid-template-columns: 1fr 1fr;
+        
     }
     .results-container {
         flex-direction: row;
@@ -452,22 +559,35 @@ footer a{
     #blues{
         grid-template-columns: 1fr 1fr;
         justify-content: space-between;
-        gap:30px;
+        gap: 20px;
         
     }
     
 }
 /* MEDIA QUERIES (LARGE) */
 @media screen and (min-width:1024px){
+    
+     .results-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .results-table {
+        width: 50%;
+    }
+    .bar-chart {
+        width: 50%;
+    }
+    
     #blues{
         grid-template-columns: 1fr 1fr 1fr;
-        justify-content: space-between;
-        gap:30px;
+        justify-content: stretch;
+        gap: 20px;
             
     }
     .contact form{
+        padding-top: 20px;
         display: grid;
-        gap:30px;
+        gap: 20px;
         grid-template-columns: 1fr 1fr;
     }
         
